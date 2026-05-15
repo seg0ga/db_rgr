@@ -41,5 +41,24 @@
 - Каскадное удаление сервисов при удалении сервера.
 - Защита целостности данных через внешние ключи и ограничения.
 
+
+#### Индексы
+| № | Таблица | Индекс | Колонка | Назначение |
+|---|---------|--------|---------|-------------|
+| 1 | servers | idx_servers_rack_id | rack_id | Фильтр по стойке |
+| 2 | servers | idx_servers_status_id | status_id | Фильтр по статусу |
+| 3 | servers | idx_servers_hostname | hostname | Поиск по имени |
+| 4 | servers | idx_servers_ip_address | ip_address | Поиск по IP |
+| 5 | services | idx_services_server_id | server_id | Фильтр по серверу |
+| 6 | services | idx_services_status | status | Фильтр по статусу |
+| 7 | incidents | idx_incidents_detected_at | detected_at | Поиск по дате |
+| 8 | incidents | idx_incidents_priority_id | priority_id | Фильтр по приоритету |
+| 9 | incidents | idx_incidents_server_id | server_id | Фильтр по серверу |
+| 10 | maintenance_log | idx_maintenance_log_performed_at | performed_at | Поиск по дате |
+| 11 | maintenance_log | idx_maintenance_log_server_id | server_id | Фильтр по серверу |
+| 12 | servers_audit | idx_servers_audit_changed_at | changed_at | Поиск по дате |
+| 13 | servers_audit | idx_servers_audit_server_id | server_id | Фильтр по серверу |
+
+
 ### Графическая модель данных:
 ![diagram.png](diagram.png)
