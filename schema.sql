@@ -74,3 +74,21 @@ ALTER TABLE incidents ADD CONSTRAINT fk_incidents_service FOREIGN KEY (service_i
 ALTER TABLE incidents ADD CONSTRAINT fk_incidents_priority FOREIGN KEY (priority_id) REFERENCES incident_priorities(id);
 
 ALTER TABLE maintenance_log ADD CONSTRAINT fk_maintenance_server FOREIGN KEY (server_id) REFERENCES servers(id);
+
+CREATE INDEX idx_servers_rack_id ON servers(rack_id);
+CREATE INDEX idx_servers_status_id ON servers(status_id);
+CREATE INDEX idx_servers_hostname ON servers(hostname);
+CREATE INDEX idx_servers_ip_address ON servers(ip_address);
+
+CREATE INDEX idx_services_server_id ON services(server_id);
+CREATE INDEX idx_services_status ON services(status);
+
+CREATE INDEX idx_incidents_detected_at ON incidents(detected_at);
+CREATE INDEX idx_incidents_priority_id ON incidents(priority_id);
+CREATE INDEX idx_incidents_server_id ON incidents(server_id);
+
+CREATE INDEX idx_maintenance_log_performed_at ON maintenance_log(performed_at);
+CREATE INDEX idx_maintenance_log_server_id ON maintenance_log(server_id);
+
+CREATE INDEX idx_servers_audit_changed_at ON servers_audit(changed_at);
+CREATE INDEX idx_servers_audit_server_id ON servers_audit(server_id);
