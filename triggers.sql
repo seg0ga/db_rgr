@@ -24,6 +24,8 @@ BEGIN
 END;
 $$;
 
+DROP TRIGGER IF EXISTS trg_audit_server_status ON servers;
+
 CREATE TRIGGER trg_audit_server_status
     AFTER UPDATE OF status_id ON servers
     FOR EACH ROW
@@ -41,7 +43,8 @@ BEGIN
 END;
 $$;
 
--- Создание триггера
+DROP TRIGGER IF EXISTS trg_update_server_timestamp ON servers;
+
 CREATE TRIGGER trg_update_server_timestamp
     BEFORE UPDATE ON servers
     FOR EACH ROW

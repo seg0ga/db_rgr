@@ -14,6 +14,9 @@ SELECT id, name, location, power_capacity FROM racks ORDER BY name;
 --все сервисы(имя, id сервера и порт)
 SELECT id, name, server_id, port, status FROM services ORDER BY name;
 
+--все приоритеты инцидентов и нормативное время реакции
+SELECT id, level, response_minutes FROM incident_priorities ORDER BY response_minutes;
+
 --4 ЗАПРОСА С УСЛОВИЯМИ ФИЛЬТРАЦИИ(WHERE)
 --Серверы с ОЗУ>32gb
 SELECT hostname, model, ram_gb, cpu_cores FROM servers WHERE ram_gb>64 ORDER BY ram_gb DESC;

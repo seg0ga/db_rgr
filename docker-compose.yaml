@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dc_equipment_postgres
+    environment:
+      POSTGRES_DB: dc_equipment_rgr
+      POSTGRES_USER: rgr_user
+      POSTGRES_PASSWORD: rgr_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./data.sql:/docker-entrypoint-initdb.d/02_data.sql:ro
+      - ./functions.sql:/docker-entrypoint-initdb.d/03_functions.sql:ro
+      - ./triggers.sql:/docker-entrypoint-initdb.d/04_triggers.sql:ro
+      - ./queries.sql:/workspace/queries.sql:ro
+      - ./demo.sql:/workspace/demo.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rgr_user -d dc_equipment_rgr"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:
